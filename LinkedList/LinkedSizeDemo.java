@@ -22,7 +22,8 @@ public class LinkedSizeDemo extends SingleLinkedList {
     }
 
     public static void main(String[] args) {
-        System.out.println("有效的节点个数 ="+ getSize(SingleLinkedList. getHead()));
+        //这里把求有效节点单独列出方便阅读 但是无法单独运行,若想检测代码,复制代码块到链表类中即可
+       // System.out.println("有效的节点个数 ="+ getSize(SingleLinkedList. getHead()));
     }
 
 }

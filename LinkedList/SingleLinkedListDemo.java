@@ -45,6 +45,11 @@ public class SingleLinkedListDemo {
 class SingleLinkedList {
     private HeroNode head = new HeroNode(0, "", "");
 
+    //返回头节点(求有效节点个数用到)
+    public  HeroNode getHead() {
+        return head;
+    }
+
     //添加节点到单向链表
     /*
     思路：在不考虑编号顺序时

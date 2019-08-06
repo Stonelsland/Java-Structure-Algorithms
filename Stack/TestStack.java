@@ -1,4 +1,4 @@
-package LinkedList;
+package Stack;
 
 import java.util.Stack;
 //栈的基本使用

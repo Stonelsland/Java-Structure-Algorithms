@@ -9,9 +9,7 @@ public class QuickSort {
         int[] array = {-3, 18, 0, 25, -20, 30, -1, 900, 456, 13};
         //测试选择排序
         testQuick(array);
-        //100000数据测试选择排序的速度(<<1s)
-        //1000000数据测试选择排序的速度(<1s)
-        //1000000数据测试选择排序的速度(2s)
+        //10000000数据测试选择排序的速度(2ms)
         testQuickTime();
     }
 
@@ -74,12 +72,12 @@ public class QuickSort {
 
     //选择排序时间测试方法
     public static void testQuickTime() {
-        int[] array = new int[100000];
-        for (int i = 0; i < 100000; i++) {
-            array[i] = (int) (Math.random() * 1000000);
+        int[] array = new int[10000000];
+        for (int i = 0; i < 10000000; i++) {
+            array[i] = (int) (Math.random() * 100000000);
         }
         Date datebefore = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:sss");
         String dateb = simpleDateFormat.format(datebefore);
         System.out.println("排序前的时间为" + dateb);
 

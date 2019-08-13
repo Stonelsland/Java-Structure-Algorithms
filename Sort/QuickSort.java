@@ -64,13 +64,12 @@ public class QuickSort {
     public static void testQuick(int[] array) {
         System.out.println("排序前");
         System.out.println(Arrays.toString(array));
-        //exShellSort(array);
         quickSort(array, 0, array.length - 1);
         System.out.println("排序后");
         System.out.println(Arrays.toString(array));
     }
 
-    //选择排序时间测试方法
+    //快速排序时间测试方法
     public static void testQuickTime() {
         int[] array = new int[10000000];
         for (int i = 0; i < 10000000; i++) {

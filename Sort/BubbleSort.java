@@ -48,6 +48,7 @@ public class BubbleSort {
         System.out.println("排序后");
         System.out.println(Arrays.toString(array));
     }
+
     //冒泡排序时间测试方法
     public static void testBubbleTime() {
         int[] array0 = new int[100000];

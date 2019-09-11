@@ -1,0 +1,289 @@
+package Tree.ThreadedBinaryTree;
+
+public class TreadedBinaryTreeDemo {
+}
+
+class ThreadedBinaryTree {
+    private PersonNode root;
+    public void setRoot(PersonNode root) {
+        this.root = root;
+    }
+
+
+    //中序线索化
+
+    //删除结点
+    public void deleteNode(int no){
+        if (root!=null){
+            //判断root是不是待删除结点
+            if (root.getNo() ==no){
+                root =null;
+            }else {
+                root.deleteNode(no);
+            }
+        }else {
+            System.out.println("空树");
+        }
+    }
+    //前序遍历
+    public void preOrder() {
+        if (this.root != null) {
+            this.root.preOrder();
+        } else {
+            System.out.println("二叉树为空,无法便利");
+        }
+    }
+    //前序查找
+    public PersonNode preOrderSearch(int no){
+        if (root!=null){
+            return root.preOrderSearch(no);
+        }else {
+            return null;
+        }
+    }
+
+    //中序遍历
+    public void infixOrder() {
+        if (this.root != null) {
+            this.root.infixOrder();
+        } else {
+            System.out.println("二叉树为空,无法便利");
+        }
+    }
+
+    //中序查找
+    public PersonNode infixOrderSearch(int no){
+        if (root!=null){
+            return root.infixOrderSearch(no);
+        }else {
+            return null;
+        }
+    }
+    //后序遍历
+    public void postOrder() {
+        if (this.root != null) {
+            this.root.postOrder();
+        } else {
+            System.out.println("二叉树为空,无法便利");
+        }
+    }
+
+    //后序查找
+    public PersonNode postOrderSearch(int no){
+        if (root!=null){
+            return root.postOrderSearch(no);
+        }else {
+            return null;
+        }
+    }
+
+}
+
+
+//定义结点
+class PersonNode {
+    private int no;
+    private String name;
+    private PersonNode left;
+    private PersonNode right;
+    //若type=0则指向子结点,若=1则指向前驱结点或后继结点
+    private int leftType;
+    private int rightType;
+
+    public PersonNode(int no, String name) {
+        super();
+        this.no = no;
+        this.name = name;
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public PersonNode getLeft() {
+        return left;
+    }
+
+    public void setLeft(PersonNode left) {
+        this.left = left;
+    }
+
+    public PersonNode getRight() {
+        return right;
+    }
+
+    public void setRight(PersonNode right) {
+        this.right = right;
+    }
+
+    public int getLeftType() {
+        return leftType;
+    }
+
+    public void setLeftType(int leftType) {
+        this.leftType = leftType;
+    }
+
+    public int getRightType() {
+        return rightType;
+    }
+
+    public void setRightType(int rightType) {
+        this.rightType = rightType;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonNode{" +
+                "no=" + no +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    //递归删除结点
+    public void deleteNode(int no){
+        if(this.left!=null&&this.left.no == no){
+            this.left=null;
+            return;
+        }
+        if(this.right!=null&&this.right.no == no){
+            this.right=null;
+            return;
+        }
+        if (this.left!=null){
+            this.left.deleteNode(no);
+        }
+        if (this.right!=null){
+            this.right.deleteNode(no);
+        }
+    }
+
+    //前序遍历
+    public void preOrder() {
+        System.out.println(this);//输出父结点
+        //递归向左子树前序遍历
+        if (this.left != null) {
+            this.left.preOrder();
+        }
+        //递归向右子树前序遍历
+        if (this.right != null) {
+            this.right.preOrder();
+        }
+    }
+
+    //中序遍历
+    public void infixOrder() {
+        //递归向左子树中序遍历
+        if (this.left != null) {
+            this.left.infixOrder();
+        }
+        System.out.println(this);//输出父结点
+
+        //递归向右子树前序遍历
+        if (this.right != null) {
+            this.right.infixOrder();
+        }
+    }
+
+    //后序遍历
+    public void postOrder() {
+        //递归向左子树后序遍历
+        if (this.left != null) {
+            this.left.postOrder();
+        }
+        //递归向右子树后序遍历
+        if (this.right != null) {
+            this.right.postOrder();
+        }
+        System.out.println(this);//输出父结点
+    }
+
+    //前序遍历查找
+    public PersonNode preOrderSearch(int no) {
+        System.out.println("前序查找执行");
+        //先比较当前结点是否相等,相等则返回
+        if (this.no == no) {
+            return this;
+        }
+        //若不等则判断当前结点的左子结点是否为空
+        //不为空则递归前序查找
+        PersonNode resNode = null;
+        if (this.left != null) {
+            resNode = this.left.preOrderSearch(no);
+        }
+        //若左递归查找到结点则返回
+        if (resNode != null) {
+            return resNode;
+        }
+        //否则继续判断当前结点的右子结点是否为空
+        // 若不为空,则继续向右递归前序查找
+        if (this.right != null) {
+            resNode = this.right.preOrderSearch(no);
+        }
+        return resNode;
+    }
+
+    //中序遍历查找
+    public PersonNode infixOrderSearch(int no) {
+        System.out.println("中序查找执行");
+        PersonNode resNode = null;
+        //判断当前结点的左子结点是否为空
+        if (this.left != null) {
+            resNode = this.left.infixOrderSearch(no);
+        }
+        //若左递归查找到结点则返回
+        if (resNode != null) {
+            return resNode;
+        }
+        //否则比较当前结点,若找到,则返回
+        if (this.no == no) {
+            return this;
+        }
+        //否则继续判断当前结点的右子结点是否为空
+        // 若不为空,则继续向右递归前序查找
+        if (this.right != null) {
+            resNode = this.right.infixOrderSearch(no);
+        }
+        return resNode;
+    }
+
+    //后序遍历
+    public PersonNode postOrderSearch(int no) {
+        System.out.println("后序查找执行");
+        PersonNode resNode = null;
+        //判断当前结点的左子结点是否为空
+        if (this.left != null) {
+            resNode = this.left.postOrderSearch(no);
+        }
+        //若左递归查找到结点则返回
+        if (resNode != null) {
+            return resNode;
+        }
+        //否则继续判断当前结点的右子结点是否为空
+        // 若不为空,则继续向右递归前序查找
+        if (this.right != null) {
+            resNode = this.right.postOrderSearch(no);
+        }
+        //若右递归查找到结点则返回
+        if (resNode != null) {
+            return resNode;
+        }
+        //左右子树都没有找到则比较当前结点,若找到,则返回
+        if (this.no == no) {
+            return this;
+        }
+        return resNode;
+    }
+}
